@@ -1,0 +1,11 @@
+export { runCapabilityProbe } from './probe.js';
+export { createHost, detectBrowser, applyHeader } from './core/env.js';
+export { SUPPORT, createReport } from './core/model.js';
+export { ProbeError, ERROR_CODES } from './core/errors.js';
+export { MATRIX, BROWSERS, FEATURES } from './matrix/data.js';
+export { buildCompatibilityMatrix } from './matrix/engine.js';
+export { planFallback } from './fallback/rules.js';
+export { createMutex, createTaskExecutor, resolveExecutionMode } from './fallback/adapters.js';
+export { createReportStore, memoryStore } from './report/storage.js';
+export { toJSON, toMarkdown, toCSV, toHTML, downloadReport, logToConsole } from './report/exporter.js';
+export { PROBE_WORKER_SOURCE } from './worker/probe-source.js';

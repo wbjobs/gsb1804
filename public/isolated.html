@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COOP/COEP/CORP 能力检测台（隔离模式）</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>COOP / COEP / CORP / SharedArrayBuffer 能力检测台</h1>
+    <p>当前页面带 COOP same-origin + COEP require-corp，SharedArrayBuffer 应可用。普通对照页见 <a href="/" style="color:#fff;text-decoration:underline">首页</a></p>
+  </header>
+  <main>
+    <section class="card" id="summary-card">
+      <div class="row">
+        <button class="primary" id="run-btn">开始检测</button>
+        <span id="overall" class="badge unknown">未检测</span>
+        <span id="isolation-pill" class="status-pill relaxed">隔离状态：未知</span>
+        <span class="spacer"></span>
+        <div class="row" id="export-row" hidden>
+          <button data-format="json">导出 JSON</button>
+          <button data-format="markdown">导出 Markdown</button>
+          <button data-format="csv">导出 CSV</button>
+          <button data-format="html">导出 HTML</button>
+          <button id="post-btn">上报到 /api/report</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>运行环境</h2>
+      <dl class="kv" id="context"><dt class="muted">等待检测…</dt><dd></dd></dl>
+    </section>
+
+    <section class="card">
+      <h2>检测项</h2>
+      <table>
+        <thead><tr><th>检测项</th><th>结论</th><th>关键细节 / 警告</th><th>耗时</th></tr></thead>
+        <tbody id="findings-body"><tr><td colspan="4" class="muted">点击“开始检测”</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>降级方案</h2>
+      <div id="fallback-level" class="muted">尚未生成</div>
+      <div id="actions"></div>
+    </section>
+
+    <section class="card matrix-scroll">
+      <h2>兼容矩阵</h2>
+      <p class="muted" id="matrix-note"></p>
+      <table id="matrix-table"></table>
+    </section>
+
+    <section class="card">
+      <h2>异常记录</h2>
+      <div id="exceptions" class="muted">无</div>
+    </section>
+  </main>
+  <div id="toast" aria-live="polite"></div>
+  <script type="module" src="/src/ui/app.js"></script>
+</body>
+</html>

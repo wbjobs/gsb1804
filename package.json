@@ -1,0 +1,20 @@
+{
+  "name": "coi-capability-probe",
+  "version": "1.0.0",
+  "description": "COOP/COEP/CORP 与 SharedArrayBuffer 特性检测、降级方案、兼容矩阵与报告系统",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test",
+    "build:worker": "node scripts/build-worker.js",
+    "start": "node scripts/server.js",
+    "start:isolated": "ISOLATED=1 node scripts/server.js",
+    "check": "npm run build:worker && npm test",
+    "report": "node scripts/cli-report.mjs",
+    "report:json": "node scripts/cli-report.mjs --json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
