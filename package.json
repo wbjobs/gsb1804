@@ -1,0 +1,12 @@
+{
+  "name": "coi-sab-detector",
+  "version": "1.0.0",
+  "description": "COOP/COEP/CORP 与 SharedArrayBuffer 可用性检测、降级、兼容矩阵与报告",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.mjs",
+    "test": "node tests/test-logic.mjs && node tests/test-detector.mjs && node tests/test-channel.mjs && node tests/test-http-inject.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

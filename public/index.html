@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COOP/COEP/CORP · SharedArrayBuffer 可用性检测</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>COOP / COEP / CORP 与 SharedArrayBuffer 检测</h1>
+      <p class="sub">特性检测 · 降级方案 · 兼容矩阵 · 可导出报告 · 异常提示</p>
+      <div id="modeBadge" class="badge">读取环境中…</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="globalAlert" class="alert hidden" role="alert"></div>
+
+    <section class="card" aria-labelledby="h-actions">
+      <div class="card-head">
+        <h2 id="h-actions">检测控制台</h2>
+        <div class="btn-row">
+          <button id="btnRun" class="btn primary">开始检测</button>
+          <button id="btnSave" class="btn" disabled>保存报告</button>
+          <div class="dropdown">
+            <button id="btnExport" class="btn" disabled>导出 ▾</button>
+            <div id="exportMenu" class="menu hidden">
+              <button data-fmt="json">导出 JSON</button>
+              <button data-fmt="markdown">导出 Markdown</button>
+              <button data-fmt="csv">导出 CSV</button>
+              <button data-fmt="console">输出到控制台</button>
+              <button data-fmt="print">打印 / 存 PDF</button>
+              <button data-fmt="copy-json">复制 JSON</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="progressLine" class="progress-line" aria-live="polite">尚未检测。</div>
+    </section>
+
+    <section class="card hidden" id="summaryCard" aria-labelledby="h-summary">
+      <h2 id="h-summary">可用性总览</h2>
+      <div class="stat-grid" id="statGrid"></div>
+      <div class="verdict" id="verdict"></div>
+    </section>
+
+    <section class="card hidden" id="checksCard" aria-labelledby="h-checks">
+      <h2 id="h-checks">特性检测明细</h2>
+      <div class="filters" id="filters"></div>
+      <div id="checksList" class="checks"></div>
+    </section>
+
+    <section class="card hidden" id="fallbackCard" aria-labelledby="h-fallback">
+      <h2 id="h-fallback">降级方案</h2>
+      <div class="tier-ladder" id="tierLadder"></div>
+      <div id="gapList" class="gaps"></div>
+    </section>
+
+    <section class="card hidden" id="demoCard" aria-labelledby="h-demo">
+      <h2 id="h-demo">降级可运行验证：缓冲区求和</h2>
+      <p class="hint">同一套计算，按当前能力档自动选择“共享 / 转移 / 克隆 / 主线程分块”通道。</p>
+      <div class="btn-row">
+        <label>数据大小
+          <select id="demoSize">
+            <option value="65536">64 KB</option>
+            <option value="1048576" selected>1 MB</option>
+            <option value="16777216">16 MB</option>
+          </select>
+        </label>
+        <button id="btnDemo" class="btn">运行一次</button>
+      </div>
+      <pre id="demoOut" class="demo-out">尚未运行。</pre>
+    </section>
+
+    <section class="card hidden" id="matrixCard" aria-labelledby="h-matrix">
+      <h2 id="h-matrix">兼容矩阵</h2>
+      <p class="hint" id="matrixMeta"></p>
+      <div class="table-wrap">
+        <table id="matrixTable" class="matrix">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card hidden" id="historyCard" aria-labelledby="h-history">
+      <h2 id="h-history">报告历史</h2>
+      <p class="hint" id="storageNotice"></p>
+      <div class="table-wrap">
+        <table class="history">
+          <thead>
+            <tr><th>时间</th><th>浏览器</th><th>档位</th><th>汇总</th><th>操作</th></tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card hidden" id="errorsCard" aria-labelledby="h-errors">
+      <h2 id="h-errors">异常中心 <span id="errorCount" class="pill"></span></h2>
+      <div id="errorList" class="errors"></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <span>参考数据快照 2025-09（MDN/发布记录），实机检测为权威结论。</span>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
